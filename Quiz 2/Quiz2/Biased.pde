@@ -1,25 +1,27 @@
 public class Biased extends Walker {
     public void walk() {
-        moveX();
-        moveY();
+        move();
     }
 
-    private void moveX() {
+    private void move() {
         if (determine(40)) {
             x += increment;
             return;
         }
 
-        if (determine(20)) x -= increment;
-    }
+        if (determine(20)) {
+            x -= increment;
+            return;
+        }
 
-    private void moveY() {
         if (determine(20)) {
             y += increment;
             return;
         }
 
-        if (determine(20)) y -= increment;
+        if (determine(20)) {
+            y -= increment;
+        }
     }
 
     private boolean determine(int chance) {
