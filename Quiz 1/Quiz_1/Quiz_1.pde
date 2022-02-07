@@ -23,9 +23,9 @@ void draw() {
   drawFunction( x -> -(5.0f * x) + 30.0f, color(255, 0, 255));
 
   //Number 3
-  drawFunction( x -> sin((x * 0.2) + (currentPhase += 0.5f)) * 30, color(255, 255, 0));
+  drawFunction( x -> sin((x * 0.2) + currentPhase) * 30, color(255, 255, 0));
+  currentPhase += 0.5f;
 
-  // drawSineWave(currentPhase += 0.5f);
 }
 
 boolean drawCartesianPlane() {
@@ -52,17 +52,5 @@ void drawFunction(Function f, color col) {
   for (float x = -200; x <= 200; x += 0.1f) {
     float y = f.provide(x);
     circle(x, y, 5);
-  }
-}
-
-void drawSineWave(float phase){
-  color col = color (255, 255, 0);
-  fill(col);
-  stroke(col);
-  noStroke();
-
-  for (float x = -200; x <= 200; x += 0.1f) {
-    float y = sin((x * 0.2) + phase) * 30;
-    circle (x , y, 5);
   }
 }
