@@ -16,9 +16,16 @@ void draw() {
   //  line(-100, -75, 100, 100);
    
   drawCartesianPlane();
-  drawNumber1();
-  drawNumber2();
-  drawSineWave(currentPhase += 0.5f);
+  //Number 1
+  drawFunction( x -> (float)Math.pow(x, 2) - (15 * x) - 3, color(255, 255, 0));
+  
+  //Number 2
+  drawFunction( x -> -(5.0f * x) + 30.0f, color(255, 0, 255));
+
+  //Number 3
+  drawFunction( x -> sin((x * 0.2) + (currentPhase += 0.5f)) * 30, color(255, 255, 0));
+
+  // drawSineWave(currentPhase += 0.5f);
 }
 
 boolean drawCartesianPlane() {
@@ -36,26 +43,14 @@ boolean drawCartesianPlane() {
   return true;
 }
 
-void drawNumber1() {
-  color col = color (255, 255, 0);
+void drawFunction(Function f, color col) {
+  // color col = color (255, 0, 255);
   fill(col);
   stroke(col);
   noStroke();
 
   for (float x = -200; x <= 200; x += 0.1f) {
-    float y = (float)Math.pow(x, 2) - (15 * x) - 3;
-    circle(x, y, 5);
-  }
-}
-
-void drawNumber2() {
-  color col = color (255, 0, 255);
-  fill(col);
-  stroke(col);
-  noStroke();
-
-  for (float x = -200; x <= 200; x += 0.1f) {
-    float y = -(5.0f * x) + 30.0f;
+    float y = f.provide(x);
     circle(x, y, 5);
   }
 }
