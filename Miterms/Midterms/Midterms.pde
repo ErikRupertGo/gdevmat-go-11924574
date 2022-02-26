@@ -9,16 +9,18 @@ void setup() {
     size(1080, 720, P3D);
     camera(0, 0, -(720/2.0) / tan(PI*30.0 / 180.0), 0, 0, 0, 0, -1, 0);
 
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 100; i++)
         allMaMatter.add(new Matter(randomGaussian() * Window.windowWidth, randomGaussian() * Window.windowHeight));
-    }
+
 }
 
 void draw() {
     background(0);
 
-    allMaMatter.forEach(m -> m.updateTarget(holemo.getPosition()));
-    allMaMatter.forEach(m -> m.draw());
+    allMaMatter.forEach(m -> {
+            m.updateTarget(holemo.getPosition());
+            m.draw();
+        });
 
     holemo.draw();
 
